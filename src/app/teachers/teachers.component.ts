@@ -4,7 +4,8 @@ import { TeacherService } from '../services/teachers.service';
 
 @Component({
     selector: 'teachers',
-    templateUrl: './teachers.component.html'
+    templateUrl: './teachers.component.html',
+    styleUrls:['./teachers.component.scss']
 })
 
 export class TeacherComponent implements OnInit {
@@ -28,6 +29,8 @@ export class TeacherComponent implements OnInit {
             this.teacherService.searchTeacher(criteria).subscribe(data => {
                 this.teachers = data;
             });
+        }else{
+            this.ngOnInit();
         }
     }
 }
