@@ -1,16 +1,31 @@
 <div class="container">
+    <!-->Creates the form to look up teachers</!-->
     <form>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="form-group">
                     <label for="search">Search Teacher</label>
-                    <input type="text" class="form-control" name="criteria" id="search" placeholder="Amount" (keyup)="searchTeacher(criteria)"
-                        [(ngModel)]="criteria">
+                    <input type="text" class="form-control" name="criteria" id="search" placeholder="" (keyup)="searchTeacher(criteria)" [(ngModel)]="criteria">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="skills">Search Teacher</label>
+                <select name="skill" [(ngModel)]="skill" id="skills" class="form-control" (change)="addSkill(skill)">
+                    <option *ngFor="let skill of skills" [value]="{id: skill._id, name: skill.name} | json" >{{ skill?.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning alert-dismissible" role="alert" *ngFor="let skill of selectedSkills" style="width: 100px">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ skill?.name }}
                 </div>
             </div>
         </div>
     </form>
     <br>
+    <!-->Creats the table to display the information of the user</!-->
     <table class="table table-striped table-bordered">
         <tr>
             <th>Name</th>

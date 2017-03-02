@@ -21,4 +21,10 @@ export class TeacherService {
         return this.http.get(this.url + '/search/teachers/criteria/' + criteria)
         .map(res => res.json());
     }
+
+    //Gets the skills
+    getSkills(){
+        return this.http.get(this.url + '/get/skills/all')
+            .map(res => res.json());
+    }
 }
