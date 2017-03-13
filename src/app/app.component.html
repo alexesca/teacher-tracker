@@ -1,8 +1,10 @@
 <div class="container">
   <h1>
     {{title}}
+    <a class="btn btn-info right" role="button" [routerLink]="['/login']" *ngIf="!loginService.isLoggedIn()">Log In</a>
+    <a class="btn btn-info right" role="button" [routerLink]="['/logout']" *ngIf="loginService.isLoggedIn()">Log Out</a>
     <hr>
-    <teachers></teachers>
+    <router-outlet></router-outlet>
   </h1>
 
 </div>
