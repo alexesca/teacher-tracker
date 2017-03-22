@@ -24,7 +24,7 @@
                         <button type="button" (click)="removeSkill(i)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>                        {{ skill?.name }}
                 </div>
                 <div class="alert alert-danger alert-dismissible alert-xs fade in" *ngIf="selectedSkills.length > 1" role="alert" style="display: inline-block; margin: 3px;">
-                    <button type="button" (click)="removeSkill(-1)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>                    Remove All
+                    <button type="button" (click)="removeSkill(-1)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Remove All
                 </div>
             </div>
         </div>
@@ -43,8 +43,8 @@
     <tr *ngFor="let teacher of teachers">
         <td>{{teacher?.firstname }}</td>
         <td>{{ teacher?.lastname }}</td>
-        <td>{{ teacher?.phone }}</td>
-        <td>{{ teacher?.emails }}</td>
+        <td>{{ teacher?.phonenumber }}</td>
+        <td>{{ teacher?.email }}</td>
         <td>
             <div *ngFor="let skill of teacher.skills">{{ skill?.name }} </div>
         </td>

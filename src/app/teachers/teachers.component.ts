@@ -4,6 +4,10 @@ import { TeacherService } from '../services/teachers.service';
 import { Auth } from '../services/auth.service';
 import { Headers } from '@angular/http'
 
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
+
+
 @Component({
     selector: 'teachers',
     templateUrl: './teachers.component.html',
@@ -18,24 +22,29 @@ export class TeacherComponent implements OnInit {
     selectedSkills: Array<any>;
     skill: any;
 
-    constructor(private teacherService: TeacherService, private auth: Auth) {
+    constructor(private teacherService: TeacherService, private auth: Auth, private loginService: LoginService, private router: Router) {
+        if (!loginService.isLoggedIn()) {
+            router.navigate(['/']);
+        }
+
         this.selectedSkills = [];
     }
 
-    signup(user, password) {
-        this.auth.signup(user, password);
+    ngOnInit() {
+        //Get all teachers
+        this.getAllTeachers();
+        //Get skills
+        this.getSkills();
     }
 
-    ngOnInit() {
+    //Gets all the teachers
+    getAllTeachers() {
         let response = this.teacherService.getAllTeachers().subscribe(data => {
             this.teachers = data;
             console.log(data);
         }, error => {
             console.log(error);
         });
-
-        //Get skills
-        this.getSkills();
     }
 
     getSkills() {
@@ -94,10 +103,12 @@ export class TeacherComponent implements OnInit {
 
     removeSkill(index: number) {
         try {
-            if (index < 0) {
+            if (index < 0) {//If remove all is click
                 this.selectedSkills.splice(0, this.selectedSkills.length);
-            } else {
+                this.getAllTeachers();
+            } else {//If a skill is removed
                 this.selectedSkills.splice(index, 1);
+                this.searchTeacherBySkill();
             }
         } catch (error) {
             console.log(error);
@@ -144,7 +155,7 @@ export class TeacherComponent implements OnInit {
         this.teacherService.getThing()
             .subscribe(data => {
                 console.log(data);
-            }, error =>{
+            }, error => {
                 console.log(error);
             })
     }

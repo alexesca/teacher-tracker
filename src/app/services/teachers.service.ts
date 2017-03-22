@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { AuthHttp, AuthConfig, JwtHelper } from 'angular2-jwt';
 
@@ -10,7 +10,7 @@ export class TeacherService {
     //Variables 
     url: string = "http://localhost:8080";
     //Injectables
-    constructor(private http: Http,  public authHttp: AuthHttp) { }
+    constructor(private http: Http, public authHttp: AuthHttp) { }
 
     //Gets all the Teachers
     getAllTeachers() {
@@ -46,6 +46,15 @@ export class TeacherService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.authHttp.get(this.url + '/get/skills/all', { headers: headers })
+            .map(res => res.json());
+    }
+
+
+    //Add a new teacher
+    addTeacher(values: any) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.authHttp.post(this.url + '/teachers/add/new', JSON.stringify(values), { headers: headers })
             .map(res => res.json());
     }
 

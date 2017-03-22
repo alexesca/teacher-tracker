@@ -1,0 +1,106 @@
+<div style="width: 700px">
+  <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="showInvalidForm">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Invalid Form</strong>
+    <ul>
+      <li>Fill out required fields.</li>
+      <li>Input valid characters</li>
+    </ul>
+  </div>
+  <h4>Contact Information <small>All the fields are required!</small></h4>
+  <form [formGroup]="mainForm" (ngSubmit)="addTeacher()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon" style="width: 120px; text-align: right">First Name</div>
+            <input type="text" formControlName="firstname" class="form-control" id="exampleInputAmount" placeholder="John">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon" style="width: 120px; text-align: right">Last Name</div>
+            <input type="text" formControlName="lastname" class="form-control" id="exampleInputAmount" placeholder="Doe">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon" style="width: 120px; text-align: right">Email</div>
+            <input type="text" formControlName="email" class="form-control" id="exampleInputAmount" placeholder="john.doe@gmai.com" width="100%">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon" style="width: 120px; text-align: right">Phone Number</div>
+            <input type="text" formControlName="phonenumber" class="form-control" id="exampleInputAmount" placeholder="8013334567">
+          </div>
+        </div>
+      </div>
+    </div>
+    <h4>Address</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Address Line 1</div>
+            <input type="text" formControlName="address1" class="form-control" id="exampleInputAmount" placeholder="345 S 67 E">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Address Line 2</div>
+            <input type="text" formControlName="address2" class="form-control" id="exampleInputAmount" placeholder="Apt 5">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">City</div>
+            <input type="text" formControlName="city" class="form-control" id="exampleInputAmount" placeholder="e.g: Provo">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">State</div>
+            <select formControlName="state" class="form-control">
+            <option>UT</option>
+            <option>KY</option>
+            <option>AK</option>
+            <option>AZ</option>
+            <option>CA</option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Zip Code</div>
+            <input type="text" formControlName="zipCode" class="form-control" id="exampleInputAmount" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <div></div>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

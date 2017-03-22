@@ -14,7 +14,11 @@ export class Login{
     password: string;  
     showError: boolean;
 
-    constructor(private loginService: LoginService,  private router: Router){}
+    constructor(private loginService: LoginService,  private router: Router){
+        if(loginService.isLoggedIn()){
+            router.navigate(['/teachers']);
+        }
+    }
 
     login(){
         this.loginService.login(this.username, this.password)
