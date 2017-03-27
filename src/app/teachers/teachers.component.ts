@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 
 export class TeacherComponent implements OnInit {
-
+    
     teachers: any;
     criteria: string;
     skills: Array<any>;
@@ -26,7 +26,6 @@ export class TeacherComponent implements OnInit {
         if (!loginService.isLoggedIn()) {
             router.navigate(['/']);
         }
-
         this.selectedSkills = [];
     }
 

@@ -16,16 +16,32 @@ export class AddTeacherComponent implements OnInit {
 
   mainForm: FormGroup;
   showInvalidForm: boolean;
+  skills: any;
+  selectedSkills: Array<any>;
+  successfulMessage: boolean; 
+  errorMessage: boolean;
 
-  constructor(private formBuilder: FormBuilder, private teacherService: TeacherService, private validatorsService: ValidatorsService, private loginService: LoginService,  private router: Router) {
+  
+  constructor(private formBuilder: FormBuilder, private teacherService: TeacherService, private validatorsService: ValidatorsService, private loginService: LoginService, private router: Router) {
     if (!loginService.isLoggedIn()) {
       router.navigate(['/']);
     }
     this.initAddTeacherForm();
+    this.selectedSkills = [];
+    this.successfulMessage = false;
+    this.errorMessage = false;
   }
 
   ngOnInit() {
+    this.getSkills();
+  }
 
+  //Get skills
+  getSkills() {
+    this.teacherService.getSkills()
+      .subscribe(data => {
+        this.skills = data;
+      });
   }
 
   initAddTeacherForm() {
@@ -43,20 +59,55 @@ export class AddTeacherComponent implements OnInit {
   }
 
   addTeacher() {
-    const mainForm = this.mainForm;
+    const mainForm: any = this.mainForm;
     if (mainForm.valid) {
-      this.teacherService.addTeacher(mainForm.value)
+      const values = mainForm.value;
+      values.skills = this.selectedSkills;
+      this.teacherService.addTeacher(values)
         .subscribe(data => {
-          console.log(data);
+          this.successfulMessage = true;
+          this.errorMessage = false;
         }, error => {
-          console.log(error);
+          this.successfulMessage = false;
+          this.errorMessage = true;
         });
-      console.log(this.mainForm.value);
       this.showInvalidForm = false;
     } else {
       this.showInvalidForm = true;
     }
 
   }
+
+  //Search teachers and add skills
+  onDropDownChange(skill: string) {
+    this.addSkill(skill);
+  }
+
+  //add selected skills
+    addSkill(skill: string) {
+        let newSkill = JSON.parse(skill);
+        let isInArray: boolean = false;
+        this.selectedSkills.forEach(item => {
+            if (item.name === newSkill.name) {
+                isInArray = true;
+            }
+        });
+        if (!isInArray) {
+            this.selectedSkills.push(newSkill);
+        }
+    }
+
+    removeSkill(index: number) {
+        try {
+            if (index < 0) {//If remove all is click
+                this.selectedSkills.splice(0, this.selectedSkills.length);
+            } else {//If a skill is removed
+                this.selectedSkills.splice(index, 1);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
 }

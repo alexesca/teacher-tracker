@@ -7,6 +7,18 @@
       <li>Input valid characters</li>
     </ul>
   </div>
+  <div class="" *ngIf="successfulMessage">
+    <div class="alert alert-success alert-dismissible alert-xs fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>      {{ skill?.name }}
+      <strong>The applicant was enrolled!</strong>
+    </div>
+  </div>
+  <div class="" *ngIf="errorMessage">
+    <div class="alert alert-danger alert-dismissible alert-xs fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>      {{ skill?.name }}
+      <strong>There was an error while enrolling applicant!</strong>
+    </div>
+  </div>
   <h4>Contact Information <small>All the fields are required!</small></h4>
   <form [formGroup]="mainForm" (ngSubmit)="addTeacher()">
     <div class="row">
@@ -94,13 +106,35 @@
         </div>
       </div>
     </div>
+    <h4>Add skills</h4>
     <div class="row">
-      <div class="col-md-10">
-        <div></div>
-      </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+      <div class="col-md-6">
+        <select name="skill" [(ngModel)]="skill" [ngModelOptions]="{standalone: true}" id="skills" class="form-control" (change)="onDropDownChange(skill)">
+          <option *ngFor="let skill of skills" [value]="{id: skill._id, name: skill.name} | json" >{{ skill?.name }}</option>
+        </select>
       </div>
     </div>
-  </form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="skills-container">
+          <div class="alert alert-warning alert-dismissible alert-xs fade in" role="alert" *ngFor="let skill of selectedSkills; let i = index"
+            style="display: inline-block; margin: 3px;">
+            <button type="button" (click)="removeSkill(i)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            {{ skill?.name }}
+        </div>
+        <div class="alert alert-danger alert-dismissible alert-xs fade in" *ngIf="selectedSkills.length > 1" role="alert" style="display: inline-block; margin: 3px;">
+          <button type="button" (click)="removeSkill(-1)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Remove
+          All
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    <div></div>
+  </div>
+  <div class="col-md-2">
+    <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+  </div>
+</div>
+</form>
 </div>

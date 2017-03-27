@@ -21,7 +21,7 @@ import {MenubarModule,MenuItem} from 'primeng/primeng';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'token',
         tokenGetter: (() => localStorage.getItem('token')),
