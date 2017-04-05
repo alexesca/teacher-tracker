@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { AuthHttp, AuthConfig, JwtHelper } from 'angular2-jwt';
-
+import { Url } from './url.model';
 
 import 'rxjs'
 @Injectable()
 export class TeacherService {
     //Variables 
-    url: string = "http://localhost:8080";
+    url: string;
     //Injectables
-    constructor(private http: Http, public authHttp: AuthHttp) { }
+    constructor(private http: Http, public authHttp: AuthHttp) {
+        this.url = new Url().getUrl();
+     }
 
     //Gets all the Teachers
     getAllTeachers() {
