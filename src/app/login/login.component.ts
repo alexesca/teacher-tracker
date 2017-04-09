@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 export class Login{
 
     username: string;
-    password: string;  
+    password: string;
     showError: boolean;
 
     constructor(private loginService: LoginService,  private router: Router){
         if(loginService.isLoggedIn()){
-            router.navigate(['/teachers']);
+          router.navigate(['/teachers']);
         }
     }
 

@@ -16,10 +16,16 @@ import { LogoutComponent } from './logout/logout.component';
 import { ValidatorsService } from './services/validators.service';
 
 
-//PrimeNG 
-import {MenubarModule,MenuItem} from 'primeng/primeng';
+//PrimeNG
+import {MenubarModule} from 'primeng/primeng';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import {FileUploadModule} from 'primeng/primeng';
+import { InputTextModule, ButtonModule }  from 'primeng/primeng';
+import {SplitButtonModule} from 'primeng/primeng';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -38,14 +44,18 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     LogoutComponent,
     MenuBarComponent,
     AddTeacherComponent,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     HttpModule,
     TeacherRouting,
     MenubarModule,
+    NgbModule.forRoot(),
+    FileUploadModule,
+    SplitButtonModule
   ],
   providers: [TeacherService, Auth, {
       provide: AuthHttp,
