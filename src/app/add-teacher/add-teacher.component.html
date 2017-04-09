@@ -1,6 +1,6 @@
 <div style="width: 700px">
-  <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="showInvalidForm">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <br>
+  <div class="alert alert-warning" role="alert" *ngIf="showInvalidForm">
     <strong>Invalid Form</strong>
     <ul>
       <li>Fill out required fields.</li>
@@ -8,25 +8,25 @@
     </ul>
   </div>
   <div class="" *ngIf="successfulMessage">
-    <div class="alert alert-success alert-dismissible alert-xs fade in" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>      {{ skill?.name }}
+    <div class="alert alert-success " role="alert">
       <strong>The applicant was enrolled!</strong>
     </div>
   </div>
   <div class="" *ngIf="errorMessage">
-    <div class="alert alert-danger alert-dismissible alert-xs fade in" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>      {{ skill?.name }}
+    <div class="alert alert-danger" role="alert">
       <strong>There was an error while enrolling applicant!</strong>
     </div>
   </div>
+
+
   <h4>Contact Information <small>All the fields are required!</small></h4>
   <form [formGroup]="mainForm" (ngSubmit)="addTeacher()">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <div class="input-group">
+          <div class="input-group  mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon" style="width: 120px; text-align: right">First Name</div>
-            <input type="text" formControlName="firstname" class="form-control" id="exampleInputAmount" placeholder="John">
+            <input type="text" formControlName="firstname" class="form-control" id="exampleInputAmount" >
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon" style="width: 120px; text-align: right">Last Name</div>
-            <input type="text" formControlName="lastname" class="form-control" id="exampleInputAmount" placeholder="Doe">
+            <input type="text" formControlName="lastname" class="form-control" id="exampleInputAmount">
           </div>
         </div>
       </div>
@@ -44,15 +44,15 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon" style="width: 120px; text-align: right">Email</div>
-            <input type="text" formControlName="email" class="form-control" id="exampleInputAmount" placeholder="john.doe@gmai.com" width="100%">
+            <input type="text" formControlName="email" class="form-control" id="exampleInputAmount" width="100%">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <div class="input-group">
-            <div class="input-group-addon" style="width: 120px; text-align: right">Phone Number</div>
-            <input type="text" formControlName="phonenumber" class="form-control" id="exampleInputAmount" placeholder="8013334567">
+            <div class="input-group-addon" style="width: 120px; text-align: right">Phone #</div>
+            <input type="text" formControlName="phonenumber" class="form-control" id="exampleInputAmount" >
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">Address Line 1</div>
-            <input type="text" formControlName="address1" class="form-control" id="exampleInputAmount" placeholder="345 S 67 E">
+            <input type="text" formControlName="address1" class="form-control" id="exampleInputAmount">
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">Address Line 2</div>
-            <input type="text" formControlName="address2" class="form-control" id="exampleInputAmount" placeholder="Apt 5">
+            <input type="text" formControlName="address2" class="form-control" id="exampleInputAmount">
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">City</div>
-            <input type="text" formControlName="city" class="form-control" id="exampleInputAmount" placeholder="e.g: Provo">
+            <input type="text" formControlName="city" class="form-control" id="exampleInputAmount">
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">Zip Code</div>
-            <input type="text" formControlName="zipCode" class="form-control" id="exampleInputAmount" placeholder="">
+            <input type="text" formControlName="zipCode" class="form-control" id="exampleInputAmount">
           </div>
         </div>
       </div>
@@ -138,3 +138,6 @@
 </div>
 </form>
 </div>
+
+
+<p-fileUpload name="file" url="http://localhost:8080/upload/file"></p-fileUpload>

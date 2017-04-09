@@ -7,6 +7,7 @@ import { ValidatorsService } from '../services/validators.service';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-teacher',
   templateUrl: './add-teacher.component.html',
@@ -18,10 +19,10 @@ export class AddTeacherComponent implements OnInit {
   showInvalidForm: boolean;
   skills: any;
   selectedSkills: Array<any>;
-  successfulMessage: boolean; 
+  successfulMessage: boolean;
   errorMessage: boolean;
 
-  
+
   constructor(private formBuilder: FormBuilder, private teacherService: TeacherService, private validatorsService: ValidatorsService, private loginService: LoginService, private router: Router) {
     if (!loginService.isLoggedIn()) {
       router.navigate(['/']);
@@ -108,6 +109,5 @@ export class AddTeacherComponent implements OnInit {
             console.log(error);
         }
     }
-
 
 }

@@ -1,0 +1,197 @@
+<div style="width: 700px">
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h3>Edit Teacher Information</h3>
+        </div>
+        <div class="col-md-2">
+          <button type="button" (click)="open(content)" class="btn btn-danger" style="float: right;">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="alert alert-warning alert-dismissible alert-xs fade in" role="alert" *ngIf="showInvalidForm">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <strong>Invalid Form</strong>
+        <ul>
+          <li>Fill out required fields.</li>
+          <li>Input valid characters</li>
+        </ul>
+      </div>
+      <div class="" *ngIf="successfulMessage">
+        <div class="alert alert-success alert-dismissible alert-xs fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+          <strong>The applicant was enrolled!</strong>
+        </div>
+      </div>
+      <div class="" *ngIf="deletedTeacherSuccessfulMessage">
+        <div class="alert alert-success alert-xs " role="alert">
+          <strong>The applicant was deleted!</strong>
+        </div>
+      </div>
+      <div class="" *ngIf="errorMessage">
+        <div class="alert alert-danger alert-dismissible alert-xs fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+          <strong>There was an error while enrolling applicant!</strong>
+        </div>
+      </div>
+      <h4>Contact Information
+        <small>All the fields are required!</small>
+      </h4>
+      <form [formGroup]="mainForm" (ngSubmit)="addTeacher()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon" style="width: 120px; text-align: right">First Name</div>
+                <input type="text" formControlName="firstname" class="form-control" id="exampleInputAmount"
+                       placeholder="John">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon" style="width: 120px; text-align: right">Last Name</div>
+                <input type="text" formControlName="lastname" class="form-control" id="exampleInputAmount"
+                       placeholder="Doe">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon" style="width: 120px; text-align: right">Email</div>
+                <input type="text" formControlName="email" class="form-control" id="exampleInputAmount"
+                       placeholder="john.doe@gmai.com" width="100%">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon" style="width: 120px; text-align: right">Phone Number</div>
+                <input type="text" formControlName="phonenumber" class="form-control" id="exampleInputAmount"
+                       placeholder="8013334567">
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4>Address</h4>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Address Line 1</div>
+                <input type="text" formControlName="address1" class="form-control" id="exampleInputAmount"
+                       placeholder="345 S 67 E">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Address Line 2</div>
+                <input type="text" formControlName="address2" class="form-control" id="exampleInputAmount"
+                       placeholder="Apt 5">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">City</div>
+                <input type="text" formControlName="city" class="form-control" id="exampleInputAmount"
+                       placeholder="e.g: Provo">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">State</div>
+                <select formControlName="state" class="form-control">
+                  <option>UT</option>
+                  <option>KY</option>
+                  <option>AK</option>
+                  <option>AZ</option>
+                  <option>CA</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Zip Code</div>
+                <input type="text" formControlName="zipCode" class="form-control" id="exampleInputAmount"
+                       placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4>Add skills</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <select name="skill" [(ngModel)]="skill" [ngModelOptions]="{standalone: true}" id="skills"
+                    class="form-control" (change)="onDropDownChange(skill)">
+              <option *ngFor="let skill of skills" [value]="{id: skill._id, name: skill.name} | json">{{ skill?.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="skills-container">
+              <div class="alert alert-warning alert-dismissible alert-xs  fade show" role="alert"
+                   *ngFor="let skill of selectedSkills; let i = index"
+                   style="display: inline-block; margin: 3px;">
+                <button type="button" (click)="removeSkill(i)" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                {{ skill?.name }}
+              </div>
+              <div class="alert alert-danger alert-dismissible alert-xs  fade show" *ngIf="selectedSkills.length > 1"
+                   role="alert" style="display: inline-block; margin: 3px;">
+                <button type="button" (click)="removeSkill(-1)" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                Remove All
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-10">
+              <div></div>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" [disabled]="deletedTeacherSuccessfulMessage" class="btn btn-primary" style="float: right;">Update</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h3>Do you want to delete this teacher?</h3>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c(false)">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="c(true)">Delete</button>
+  </div>
+</template>
