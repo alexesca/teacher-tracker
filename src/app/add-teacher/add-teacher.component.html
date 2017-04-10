@@ -141,7 +141,8 @@
 <div class="row">
   <div class="col-md-12">
     <br>
-    <p-fileUpload (onBeforeUpload)="appendFormInfo($event)"  name="file" url="http://localhost:8080/upload/file">
+      <p-fileUpload (onBeforeUpload)="appendFormInfo($event)" [disabled]="blockUpload" (onUpload)="wasApplicantEnrolled($event)"
+                  (onError)="hasUploadError($event)" name="file" url="http://localhost:8080/upload/file">
     </p-fileUpload>
   </div>
 </div>

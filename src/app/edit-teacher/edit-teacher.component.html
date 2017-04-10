@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="card-block">
-      <div class="alert alert-warning alert-dismissible alert-xs fade in" role="alert" *ngIf="showInvalidForm">
+      <div class="alert alert-warning alert-xs" role="alert" *ngIf="showInvalidForm">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
           aria-hidden="true">&times;</span></button>
         <strong>Invalid Form</strong>
@@ -22,10 +22,10 @@
         </ul>
       </div>
       <div class="" *ngIf="successfulMessage">
-        <div class="alert alert-success alert-dismissible alert-xs fade in" role="alert">
+        <div class="alert alert-success alert-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-          <strong>The applicant was enrolled!</strong>
+          <strong>The applicant's information is up to date!</strong>
         </div>
       </div>
       <div class="" *ngIf="deletedTeacherSuccessfulMessage">
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="" *ngIf="errorMessage">
-        <div class="alert alert-danger alert-dismissible alert-xs fade in" role="alert">
+        <div class="alert alert-danger alert-xs" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
           <strong>There was an error while enrolling applicant!</strong>
@@ -43,14 +43,14 @@
       <h4>Contact Information
         <small>All the fields are required!</small>
       </h4>
-      <form [formGroup]="mainForm" (ngSubmit)="addTeacher()">
+      <form [formGroup]="mainForm" (ngSubmit)="updateTeacher()">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon" style="width: 120px; text-align: right">First Name</div>
                 <input type="text" formControlName="firstname" class="form-control" id="exampleInputAmount"
-                       placeholder="John">
+                       placeholder="">
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
               <div class="input-group">
                 <div class="input-group-addon" style="width: 120px; text-align: right">Last Name</div>
                 <input type="text" formControlName="lastname" class="form-control" id="exampleInputAmount"
-                       placeholder="Doe">
+                       placeholder="">
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
               <div class="input-group">
                 <div class="input-group-addon" style="width: 120px; text-align: right">Email</div>
                 <input type="text" formControlName="email" class="form-control" id="exampleInputAmount"
-                       placeholder="john.doe@gmai.com" width="100%">
+                       placeholder="" width="100%">
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
               <div class="input-group">
                 <div class="input-group-addon" style="width: 120px; text-align: right">Phone Number</div>
                 <input type="text" formControlName="phonenumber" class="form-control" id="exampleInputAmount"
-                       placeholder="8013334567">
+                       placeholder="">
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
               <div class="input-group">
                 <div class="input-group-addon">Address Line 1</div>
                 <input type="text" formControlName="address1" class="form-control" id="exampleInputAmount"
-                       placeholder="345 S 67 E">
+                       placeholder="">
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
               <div class="input-group">
                 <div class="input-group-addon">City</div>
                 <input type="text" formControlName="city" class="form-control" id="exampleInputAmount"
-                       placeholder="e.g: Provo">
+                       placeholder="">
               </div>
             </div>
           </div>
@@ -195,3 +195,12 @@
     <button type="button" class="btn btn-danger" (click)="c(true)">Delete</button>
   </div>
 </template>
+<!--
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <p-fileUpload (onBeforeUpload)="appendFormInfo($event)" [disabled]="blockUpload" (onUpload)="wasApplicantEnrolled($event)"
+                  (onError)="hasUploadError($event)" name="file" url="http://localhost:8080/update/uploaded/file">
+    </p-fileUpload>
+  </div>
+</div>-->

@@ -37,9 +37,9 @@ export class AddTeacherComponent implements OnInit {
 
   ngOnInit() {
     this.getSkills();
-    this.mainForm.valueChanges.subscribe( data => {
+    this.mainForm.valueChanges.subscribe(data => {
       this.blockUpload = this.mainForm.invalid;
-    })
+    });
   }
 
   //Get skills
@@ -118,10 +118,10 @@ export class AddTeacherComponent implements OnInit {
   }
 
   //format string to be appended to the reques
-  formatSkillsToXML(){
+  formatSkillsToXML() {
     const skills = this.selectedSkills;
     var mapedSkills = skills.map(skill => skill.id + "*" + skill.name);
-    var reducedSkills = mapedSkills.reduce((acc, skill) => acc += '--' + skill );
+    var reducedSkills = mapedSkills.reduce((acc, skill) => acc += '--' + skill);
     return reducedSkills;
   }
 
@@ -139,4 +139,20 @@ export class AddTeacherComponent implements OnInit {
     event.formData.append("zipCode", this.mainForm.controls['zipCode'].value);
     event.formData.append("skills", skills);
   }
+
+
+  wasApplicantEnrolled(event) {
+    this.mainForm.reset();
+    this.selectedSkills = [];
+    this.showInvalidForm = false;
+    this.errorMessage = false;
+    this.successfulMessage = true;
+  }
+
+  hasUploadError(event) {
+    this.successfulMessage = false;
+    this.showInvalidForm = false;
+    this.errorMessage = true;
+  }
+
 }
