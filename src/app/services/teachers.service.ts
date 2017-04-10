@@ -73,5 +73,13 @@ export class TeacherService {
       .map(res => res.json());
   }
 
+  // Update teacher info
+  updateTeacher(id: string, data){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.authHttp.put(this.url + '/update/teacher/' + id, JSON.stringify(data), { headers: headers})
+      .map(res => res.json());
+  }
+
 
 }
