@@ -117,11 +117,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="skills-container">
-          <div class="alert alert-warning alert-dismissible alert-xs fade in" role="alert" *ngFor="let skill of selectedSkills; let i = index"
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let skill of selectedSkills; let i = index"
             style="display: inline-block; margin: 3px;">
             <button type="button" (click)="removeSkill(i)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            {{ skill?.name }}
         </div>
-        <div class="alert alert-danger alert-dismissible alert-xs fade in" *ngIf="selectedSkills.length > 1" role="alert" style="display: inline-block; margin: 3px;">
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="selectedSkills.length > 1" role="alert" style="display: inline-block; margin: 3px;">
           <button type="button" (click)="removeSkill(-1)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Remove
           All
         </div>
@@ -138,6 +138,12 @@
 </div>
 </form>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <p-fileUpload (onBeforeUpload)="appendFormInfo($event)"  name="file" url="http://localhost:8080/upload/file">
+    </p-fileUpload>
+  </div>
+</div>
 
 
-<p-fileUpload name="file" url="http://localhost:8080/upload/file"></p-fileUpload>
